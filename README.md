@@ -6,6 +6,12 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 
 # Microsserviços
 
+- Alunos
+- Instrutores
+- Veículos
+- Auto-Escolas
+- Aulas
+
 ## Alunos
 
 - Cadastrar aluno
@@ -31,20 +37,58 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 - Verificar com sistema do DETRAN se o aluno está cadastrado com biometria;
 - Enviar para o DETRAN associação do aluno com a auto escola
 
+```
+Body: 
+{
+    cpf: string
+    nome: string
+    birthday: Date
+    category: string[]
+    cnpj: string
+}
+```
+
 ### Atualizar aluno
 
 - Verificar se o CPF está cadastrado;
 - Verificar se a auto-escola está cadastrada;
 
+```
+Path Parameter: 
+{
+    student_id: string
+}
+
+Body: 
+{
+    nome?: string
+    birthday?: Date
+    category?: string[]
+}
+```
 ### Deletar aluno
 
-- Verificar se o CPF está cadastrado;
+- Verificar se o id está cadastrado;
 - Verificar se o aluno não tem nenhuma aula vinculada a ele;
 - Enviar para o DETRAN desassociação do aluno com a auto-escola.
 
+```
+Path Parameter: 
+{
+    student_id: string
+}
+```
+
 ### Visualizar aluno
 
-- Verificar se o CPF existe;
+- Verificar se o id do estudante existe;
+
+```
+Path Parameter: 
+{
+    student_id: string
+}
+```
 
 ### Visualizar alunos
 
@@ -75,20 +119,53 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 - Verificar no sistema do DETRAN se o instrutor está com cadastro ATIVO;
 - Enviar para o DETRAN associação do instrutor com a auto-escola.
 
+```
+Body: {
+    cpf: string
+    name: string
+    birthday: Date
+    category: string[]
+    cnpj: string
+}
+```
+
 ### Atualizar instrutor
 
 - Verificar se o CPF do instrutor está cadastrado;
 - Verificar se auto-escola está cadastrada;
 
+```
+Path Parameter: {
+    instructor_id: string
+},
+Body: {
+    name?: string
+    birthday?: string
+    category?: string[]
+}
+```
+
 ### Deletar instrutor
 
-- Verificar o CPF está cadastrado;
+- Verificar o id está cadastrado;
 - Verificar se o instrutor não está vinculado a nenhuma aula.
+- Enviar para o DETRAN desassociação do instrutor com a auto-escola.
+
+```
+Path Parameter: {
+    instructor_id: string
+}
+```
 
 ### Visualizar instrutor
 
 - Verificar se o CPF está cadastrado;
 
+```
+Path Parameter: {
+    instructor_id: string
+}
+```
 ### Visualizar instrutores
 
 -  
