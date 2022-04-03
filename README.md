@@ -17,7 +17,9 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 - Cadastrar aluno
 - Atualizar aluno
 - Deletar aluno
+- Visualizar aluno
 - Visualizar alunos
+- Visualizar aluno por CPF
 
 ### Tabela Students:
 
@@ -94,12 +96,24 @@ Path Parameter:
 
 - 
 
+### Visualizar aluno por CPF
+
+- Verifica se o aluno está cadastrado.
+
+```
+Path Parameter: {
+    cpf_student: string
+}
+```
+
 ## Instrutores
 
 - Cadastrar instrutor
 - Atualizar instrutor
 - Deletar instrutor
+- Visualizar instrutor
 - Visualizar instrutores
+- Visualizar instrutor por CPF
 
 ### Tabela Instructors
 
@@ -183,6 +197,7 @@ Path Parameter: {
 - placa (string)
 - nome (string)
 - descrição (string)
+- categoria (string[])
 - cnpj_id (uuid)
 - cnpj (string)
 
@@ -193,19 +208,52 @@ Path Parameter: {
 - Verificar se o veículo está cadastrado e ativo no DETRAN;
 - Enviar para o DETRAN vinculo do veículo com a auto-escola.
 
+
+```
+Body: {
+    plate: string
+    name: string
+    description: string
+    cnpj: string
+    category: string[]
+}
+```
 ### Atualizar veículo
 
 - Verificar se o veículo está cadastrado;
 - Verificar se a auto-escola está cadastrada.
 
+{
+    Path Parameter: {
+        vehicle_id: string
+    },
+    Body: {
+        name?: string
+        description?: string
+        category?: string[]
+    }
+}
+
 ### Deletar veículo
 
 - Verificar se o veículo está cadastrado;
-- Verificar se o veículo tem alguma aula vinculada a ele.
+- Verificar se o veículo tem alguma aula vinculada a ele;
+- Enviar para DETRAN desvinculo do veículo com a auto-escola.
 
+```
+Path Parameter: {
+    vehicle_id: string
+}
+```
 ### Visualizar veículo
 
 - Verificar se o veículo está cadastrado.
+
+```
+Path Parameter: {
+    vehicle_id: string
+}
+```
 
 ### Visualizar veículos
 
@@ -222,7 +270,8 @@ Path Parameter: {
 
 - id (uuid)
 - cnpj (string)
-- nome (string)
+- nome fantasia (string)
+- razao social (string)
 - endereço (string)
 - bairro (string)
 - Município (string)
@@ -234,18 +283,56 @@ Path Parameter: {
 - Verificar se o CNPJ está cadastrado e ATIVO no DETRAN.
 - Ativa a auto-escola caso o CNPJ já esteja cadastrado e com status inativo;
 
+```
+Body: {
+    cnpj: string
+    fantasy_name: string
+    social_reason: string
+    street: string
+    district: string
+    city: string
+    state: string
+}
+```
+
 ### Atualizar auto-escola
 
 - Verificar se o CNPJ está cadastrado;
+
+```
+Path Parameter: {
+    cnpj_id: string
+},
+Body: {
+    fantasy_name?: string
+    social_reason?: string
+    street?: string
+    district?: string
+    city?: string
+    state?: string
+}
+```
 
 ### Inativar auto-escola
 
 - Verificar se CNPJ está cadastrado;
 - Verificar se o status está ativo;
 
+```
+Path Parameter: {
+    cnpj_id: string
+}
+```
+
 ### Visualizar auto-escola
 
 - Verifica se CNPJ está cadastrado;
+
+```
+Path Parameter: {
+    cnpj_id: string
+}
+```
 
 ### Visualizar auto-escolas
 
@@ -255,6 +342,7 @@ Path Parameter: {
 
 - Marcar aula
 - Iniciar aula
+- Finalizar aula
 - Enviar aula
 
 ### Tabela Practical-Classes
@@ -263,6 +351,7 @@ Path Parameter: {
 - aluno_id (uuid)
 - instrutor_id (uuid)
 - veiculo_id (uuid)
+- cnpj_id (uuid)
 - inicio_marcado (Date)
 - final_marcado (Date)
 - inicio_real (Date)
@@ -283,13 +372,46 @@ Path Parameter: {
 - Verificar se aluno, instrutor e veículo pertencem a mesma categoria;
 - Aula deve durar 50 minutos.
 
+```
+Body: {
+    student_id: string
+    instructor_id: string
+    vehicle_id: string
+    cnpj_id: string
+    start_appointment: Date
+    finish_appointment: Date
+}
+```
 
 ### Iniciar aula
 
+- Verifica se o horário de inicio está dentro do intervalo de tolerância de 10 minutos;
 - Grava horário de início da aula;
+
+```
+Path Parameter: {
+    class_id: string
+}
+```
+
+### Finalizar aula
+
+- Verifica se o horário de término está dentro do intervalo de tolerância de 10 minutos;
 - Grava horário de término da aula;
 - Grava tempo total da aula.
+
+```
+Path Parameter: {
+    class_id: string
+}
+```
 
 ### Enviar aula
 
 - Envia dados da aula para o DETRAN;
+
+```
+Path Parameter: {
+    class_id: string
+}
+```
