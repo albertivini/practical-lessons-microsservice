@@ -184,12 +184,26 @@ Path Parameter: {
 
 -  
 
+### Visualizar instrutor por CPF
+
+- Verifica se o instrutor está cadastrado.
+
+```
+Path Parameter: {
+    cpf_instructor: string
+}
+```
+
+
 ## Veículos
 
 - Cadastrar veículo
 - Atualizar veículo
 - Deletar veículo
+- Visualizar veículo
 - Visualizar veículos
+- Visualizar veículo por Placa
+
 
 ### Tabela Vehicles
 
@@ -259,12 +273,25 @@ Path Parameter: {
 
 - 
 
+### Visualizar veículo por Placa
+
+- Verifica se o veículo está cadastrado.
+
+```
+Path Parameter: {
+    vehicle_plate: string
+}
+```
+
+
 ## Auto-Escola
 
 - Cadastrar auto-escola
 - Atualizar auto-escola
 - Inativar auto-escola
+- Visualizar auto-escola
 - Visualizar auto-escolas
+- Visualizar auto-escola por CNPJ
 
 ### Tabela Driving-Schools
 
@@ -338,12 +365,28 @@ Path Parameter: {
 
 - 
 
+### Visualizar auto-escola por CNPJ
+
+- Verifica se a auto-escola está cadastrada.
+
+```
+Path Parameter: {
+    driving_school_cnpj: string
+}
+```
+
+
 ## Aulas
 
 - Marcar aula
 - Iniciar aula
 - Finalizar aula
 - Enviar aula
+- Visualizar aula por id
+- Visualizar aula por aluno
+- Visualizar aula por instrutor
+- Visualizar aula por veículo
+- Visualizar aulas
 
 ### Tabela Practical-Classes
 
@@ -415,3 +458,15 @@ Path Parameter: {
     class_id: string
 }
 ```
+
+### Visualizar aula por id
+
+- Verifica se a aula existe.
+
+```
+Path Parameter: {
+    class_id: string
+}
+```
+
+
