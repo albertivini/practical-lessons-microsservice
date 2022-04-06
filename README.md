@@ -40,6 +40,8 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 - Enviar para o DETRAN associação do aluno com a auto escola
 
 ```
+API: {baseUrl}/students
+Method: POST
 Body: 
 {
     cpf: string
@@ -56,6 +58,8 @@ Body:
 - Verificar se a auto-escola está cadastrada;
 
 ```
+API: {baseUrl}/students/:student_id
+Method: PUT
 Path Parameter: 
 {
     student_id: string
@@ -75,6 +79,8 @@ Body:
 - Enviar para o DETRAN desassociação do aluno com a auto-escola.
 
 ```
+API: {baseUrl}/students/:student_id
+Method: DELETE
 Path Parameter: 
 {
     student_id: string
@@ -86,6 +92,8 @@ Path Parameter:
 - Verificar se o id do estudante existe;
 
 ```
+API: {baseUrl}/student/:student_id
+Method: GET
 Path Parameter: 
 {
     student_id: string
@@ -96,11 +104,18 @@ Path Parameter:
 
 - 
 
+```
+API: {baseUrl}/students
+Method: GET
+```
+
 ### Visualizar aluno por CPF
 
 - Verifica se o aluno está cadastrado.
 
 ```
+API: {baseUrl}/students/:cpf_student
+Method: GET
 Path Parameter: {
     cpf_student: string
 }
@@ -134,6 +149,8 @@ Path Parameter: {
 - Enviar para o DETRAN associação do instrutor com a auto-escola.
 
 ```
+API: {baseUrl}/instructor
+Method: POST
 Body: {
     cpf: string
     name: string
@@ -149,6 +166,8 @@ Body: {
 - Verificar se auto-escola está cadastrada;
 
 ```
+API: {baseUrl}/instructor/:instructor_id
+Method: PUT
 Path Parameter: {
     instructor_id: string
 },
@@ -166,6 +185,8 @@ Body: {
 - Enviar para o DETRAN desassociação do instrutor com a auto-escola.
 
 ```
+API: {baseUrl}/instructor/:instructor_id
+Method: DELETE
 Path Parameter: {
     instructor_id: string
 }
@@ -173,22 +194,32 @@ Path Parameter: {
 
 ### Visualizar instrutor
 
-- Verificar se o CPF está cadastrado;
+- Verificar se o instrutor está cadastrado;
 
 ```
+API: {baseUrl}/instructor/:instructor_id
+Method: GET
 Path Parameter: {
     instructor_id: string
 }
 ```
+
 ### Visualizar instrutores
 
 -  
+
+```
+API: {baseUrl}/instructors
+Method: GET
+```
 
 ### Visualizar instrutor por CPF
 
 - Verifica se o instrutor está cadastrado.
 
 ```
+API: {baseUrl}/instructor/cpf_instructor
+Method: GET
 Path Parameter: {
     cpf_instructor: string
 }
@@ -224,6 +255,8 @@ Path Parameter: {
 
 
 ```
+API: {baseUrl}/vehicle
+Method: POST
 Body: {
     plate: string
     name: string
@@ -237,16 +270,18 @@ Body: {
 - Verificar se o veículo está cadastrado;
 - Verificar se a auto-escola está cadastrada.
 
-{
-    Path Parameter: {
-        vehicle_id: string
-    },
-    Body: {
-        name?: string
-        description?: string
-        category?: string[]
-    }
+```
+API: {baseUrl}/vehicle/:vehicle_id
+Method: PUT
+Path Parameter: {
+    vehicle_id: string
+},
+Body: {
+    name?: string
+    description?: string
+    category?: string[]
 }
+```
 
 ### Deletar veículo
 
@@ -255,6 +290,8 @@ Body: {
 - Enviar para DETRAN desvinculo do veículo com a auto-escola.
 
 ```
+API: {baseUrl}/vehicle/:vehicle_id
+Method: DELETE
 Path Parameter: {
     vehicle_id: string
 }
@@ -264,6 +301,8 @@ Path Parameter: {
 - Verificar se o veículo está cadastrado.
 
 ```
+API: {baseUrl}/vehicle/:vehicle_id
+Method: GET
 Path Parameter: {
     vehicle_id: string
 }
@@ -273,11 +312,18 @@ Path Parameter: {
 
 - 
 
+```
+API: {baseUrl}/vehicles
+Method: GET
+```
+
 ### Visualizar veículo por Placa
 
 - Verifica se o veículo está cadastrado.
 
 ```
+API: {baseUrl}/vehicle/:vehicle_plate
+Method: GET
 Path Parameter: {
     vehicle_plate: string
 }
@@ -303,6 +349,7 @@ Path Parameter: {
 - bairro (string)
 - Município (string)
 - Estado (string)
+- status (string)
 
 ### Cadastrar auto-escola
 
@@ -311,6 +358,8 @@ Path Parameter: {
 - Ativa a auto-escola caso o CNPJ já esteja cadastrado e com status inativo;
 
 ```
+API: {baseUrl}/driving-school
+Method: POST
 Body: {
     cnpj: string
     fantasy_name: string
@@ -327,6 +376,8 @@ Body: {
 - Verificar se o CNPJ está cadastrado;
 
 ```
+API: {baseUrl}/driving-school/:cnpj_id
+Method: PUT
 Path Parameter: {
     cnpj_id: string
 },
@@ -346,6 +397,8 @@ Body: {
 - Verificar se o status está ativo;
 
 ```
+API: {baseUrl}/driving-school/:cnpj_id/inactive
+Method: PUT
 Path Parameter: {
     cnpj_id: string
 }
@@ -356,6 +409,8 @@ Path Parameter: {
 - Verifica se CNPJ está cadastrado;
 
 ```
+API: {baseUrl}/driving-school/:cnpj_id
+Method: GET
 Path Parameter: {
     cnpj_id: string
 }
@@ -365,16 +420,22 @@ Path Parameter: {
 
 - 
 
+```
+API: {baseUrl}/driving-schools
+Method: GET
+```
+
 ### Visualizar auto-escola por CNPJ
 
 - Verifica se a auto-escola está cadastrada.
 
 ```
+API: {baseUrl}/driving-schools/:driving_school_cnpj
+Method: GET
 Path Parameter: {
     driving_school_cnpj: string
 }
 ```
-
 
 ## Aulas
 
@@ -416,6 +477,8 @@ Path Parameter: {
 - Aula deve durar 50 minutos.
 
 ```
+API: {baseUrl}/class
+Method: POST
 Body: {
     student_id: string
     instructor_id: string
@@ -432,6 +495,8 @@ Body: {
 - Grava horário de início da aula;
 
 ```
+API: {baseUrl}/class/:class_id/start
+Method: PUT
 Path Parameter: {
     class_id: string
 }
@@ -444,6 +509,8 @@ Path Parameter: {
 - Grava tempo total da aula.
 
 ```
+API: {baseUrl}/class/:class_id/finish
+Method: PUT
 Path Parameter: {
     class_id: string
 }
@@ -454,6 +521,8 @@ Path Parameter: {
 - Envia dados da aula para o DETRAN;
 
 ```
+API: {baseUrl}/class/:class_id/send
+Method: PUT
 Path Parameter: {
     class_id: string
 }
@@ -464,6 +533,8 @@ Path Parameter: {
 - Verifica se a aula existe.
 
 ```
+API: {baseUrl}/class/:class_id
+Method: GET
 Path Parameter: {
     class_id: string
 }
