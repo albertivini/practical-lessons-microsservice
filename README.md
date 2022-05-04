@@ -29,7 +29,6 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 - data de nascimento (Date)
 - Categoria (string[])
 - cnpj_id (uuid)
-- cnpj (string)
 
 ### Cadastrar aluno
 
