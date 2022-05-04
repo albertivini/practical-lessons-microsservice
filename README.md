@@ -7,10 +7,15 @@ O projeto visa criar uma API completa de marcação, validação e envio de aula
 # Microsserviços
 
 - Alunos
+    - Port: 3000
 - Instrutores
+    - Port: 3001
 - Veículos
+    - Port: 3002
 - Auto-Escolas
+    - Port: 3003
 - Aulas
+    - Port: 3004
 
 ## Alunos
 
@@ -47,7 +52,7 @@ Body:
     nome: string
     birthday: Date
     category: string[]
-    cnpj: string
+    cnpj_id: string
 }
 ```
 
